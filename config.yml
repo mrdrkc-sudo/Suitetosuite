@@ -1,0 +1,65 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "settings"
+    label: "Настройки сайта"
+    files:
+      - file: "data/settings.json"
+        label: "Тема и навигация"
+        name: "settings"
+        fields:
+          - { label: "Название сайта", name: "siteName", widget: "string" }
+          - { label: "Логотип (URL)", name: "logoUrl", widget: "string", required: false }
+          - label: "Тема"
+            name: "theme"
+            widget: "object"
+            fields:
+              - {label: "Основной цвет", name: "primaryColor", widget: "string", default: "#6c5ce7"}
+              - {label: "Акцентный цвет", name: "accentColor", widget: "string", default: "#fd79a8"}
+              - {label: "Фон", name: "background", widget: "string", default: "#ffffff"}
+              - {label: "Цвет текста", name: "textColor", widget: "string", default: "#222222"}
+              - {label: "Скругление (px)", name: "radius", widget: "string", default: "12px"}
+          - label: "Навигация"
+            name: "nav"
+            widget: "list"
+            summary: "{{fields.label}} → {{fields.page}}"
+            fields:
+              - {label: "Название", name: "label", widget: "string"}
+              - {label: "Страница (slug)", name: "page", widget: "string"}
+          - { label: "Текст в футере", name: "footerText", widget: "string", required: false }
+
+  - name: "pages"
+    label: "Страницы"
+    folder: "content"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - {label: "Заголовок", name: "title", widget: "string"}
+      - {label: "URL-ключ (slug)", name: "slug", widget: "string"}
+      - {label: "Контент", name: "body", widget: "markdown"}
+
+  - name: "products"
+    label: "Товары"
+    files:
+      - file: "data/products.json"
+        label: "Список товаров"
+        name: "products_list"
+        fields:
+          - label: "Товары"
+            name: "items"
+            widget: "list"
+            collapsed: false
+            fields:
+              - {label: "Название", name: "title", widget: "string"}
+              - {label: "Цена (₴)", name: "price", widget: "number", value_type: "float", min: 0}
+              - {label: "Изображение", name: "image", widget: "image"}
+              - {label: "Описание", name: "description", widget: "text", required: false}
+              - {label: "Ссылка «Купить»", name: "link", widget: "string", required: false}

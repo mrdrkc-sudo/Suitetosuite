@@ -1,0 +1,30 @@
+{
+  "siteName": "DOMA Demo",
+  "logoUrl": "",
+  "footerText": "© DOMA, 2025",
+  "theme": {
+    "primaryColor": "#6c5ce7",
+    "accentColor": "#fd79a8",
+    "background": "#ffffff",
+    "textColor": "#222222",
+    "radius": "12px"
+  },
+  "nav": [
+    {
+      "label": "Главная",
+      "page": "home"
+    },
+    {
+      "label": "Магазин",
+      "page": "shop"
+    },
+    {
+      "label": "О нас",
+      "page": "about"
+    },
+    {
+      "label": "Контакты",
+      "page": "contact"
+    }
+  ]
+}
